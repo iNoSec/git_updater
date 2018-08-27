@@ -1,6 +1,9 @@
  Usage: git_updater <directory>
-    ex: git_updater /pentest/post-exploitation /pentest/exploitation /opt
-        git_updater /pentest/*
+   
+   
+    git_updater /pentest/post-exploitation /pentest/exploitation /opt
+    
+    git_updater /pentest/*
 
 First i made it for a training exercise of my (bad) bash scripting
 I made it because i dont like the way the Pentest Framework of Trustedsec made the update of all tools. 
