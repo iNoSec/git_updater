@@ -1,0 +1,26 @@
+#!/bin/bash
+
+RED="\033[01;31m"
+GREEN="\033[01;32m"
+YELLOW="\033[01;33m"
+
+
+    for num; do     
+        for i in $(ls $num) ; do
+            if [ -d $num/$i ]; then
+                cd $num/$i
+                    if [ -d ".git" ] ;then
+                       today=`date '+%m_%d'`;
+                       touch /tmp/$today-update.log 
+                       echo -e "${GREEN} ++ ${PWD} ${YELLOW}UPDATE COMPLETE"
+                       echo -e "${RED} ++ ${PWD}" >> /tmp/$today-update.log
+                       sudo git pull 2>> /tmp/$today-update.log 1>/dev/null
+                    fi
+            fi
+        done
+    done
+
+cat /tmp/$today-update.log | grep -C 1 error >> /tmp/$today-error.log
+echo -e "${RED}Some error was found : "
+cat /tmp/$today-error.log
+rm /tmp/$today-update.log && rm /tmp/$today-error.log
